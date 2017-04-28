@@ -6,8 +6,17 @@
       <%= oneProduct.name %> - $<%= oneProduct.price %>
       <div class="prodImg">
         <img src="<%= oneProduct.imageUrl %>">
+        <!-- This should be a URL that includes the ID of the product -->
+        <!-- THIS IS THE OLD WAY TO MAKE A URL -->
+        <!-- <a href ="/product-details?id=<%= oneProduct._id %>">View Details</a> -->
+        <br>
+        <a href ="/products/<%= oneProduct._id %>">View Details</a>
+        <br>
+        <a href ="/products/<%= oneProduct._id %>/edit">Edit</a>
+
       </div>
     </li>
+    <br>
     <% }) %>
   </ul>
 

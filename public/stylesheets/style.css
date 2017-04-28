@@ -10,5 +10,22 @@ a {
 
 img {
   max-width: 300px;
-  
+
+}
+
+.productDetailsview {
+  background: #ccc;
+  max-width: 50%;
+  border-radius: 20px;
+  padding: 40px;
+
+}
+
+.productDetailsview img {
+  max-width: 90%;
+
+}
+
+.detailsView {
+
 }

@@ -29,3 +29,108 @@ img {
 .detailsView {
 
 }
+
+.reviewList {
+  list-style-type: none;
+  margin: 5px;
+  padding: 10px;
+
+}
+
+.reviewList {
+  font-size: 18px;
+  font-weight: bolder;
+  margin-bottom: 10px;
+  color: darkgreen;
+}
+
+.reviewContent {
+  font-size: 12px;
+  color: black;
+}
+
+.singleReview {
+  background: #ddd;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  padding: 10px;
+  word-wrap: break-word;
+}
+
+pre {
+    margin: 0px;
+    padding: 0px;
+    font-size: 10px;
+    font-style: normal;
+    line-height: 11px;
+    font-weight: normal;
+    color: #009;
+    font-family: "Courier New",Courier,mono;
+    background-color: #F9F9FF;
+    border: 1px solid #EEE;
+    display: block;
+    white-space: pre;
+    text-align: left;
+}
+
+.jokeBlock {
+	background: rgba(0, 0, 0, 0.7);
+	font-size: 25px;
+	width: 70%;
+	padding: 20px;
+	min-height: 250px;
+	margin: 0 15%;
+	border-radius: 15px;
+}
+
+.jokeBlock img {
+	width: 60%;
+	margin: 0 20%;
+}
+
+footer {
+	float: right;
+}
+
+.searchBlock input {
+	width: 48%;
+	height: 30px;
+	margin: 0 0 0 15%;
+
+}
+
+.searchBlock button {
+	height: 30px;
+	width: 180px;
+	line-height: 30px;
+	display: inline-block;
+	padding: 0px;
+	border: 0px;
+	border-radius: 15px;
+	background: #d98134;
+  background-image: -webkit-linear-gradient(top, #d98134, #b82b2b);
+  background-image: -moz-linear-gradient(top, #d98134, #b82b2b);
+  background-image: -ms-linear-gradient(top, #d98134, #b82b2b);
+  background-image: -o-linear-gradient(top, #d98134, #b82b2b);
+  background-image: linear-gradient(to bottom, #d98134, #b82b2b);
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  text-shadow: 1px 1px 3px #666666;
+  color: #ffffff;
+  text-decoration: none
+
+}
+
+/*found this button generator online :)*/
+
+.searchBlock button:hover {
+	background: #ff0808;
+	background-image: -webkit-linear-gradient(top, #ff0808, #e6ca15);
+	background-image: -moz-linear-gradient(top, #ff0808, #e6ca15);
+	background-image: -ms-linear-gradient(top, #ff0808, #e6ca15);
+	background-image: -o-linear-gradient(top, #ff0808, #e6ca15);
+	background-image: linear-gradient(to bottom, #ff0808, #e6ca15);
+	text-decoration: none;
+}

@@ -1,0 +1,34 @@
+<h2> Product Reviews</h2>
+
+<div class ="produReview">
+<h3> <%= product.name %> </h3>
+
+<img src="<%= product.imageUrl %>" width="100%">
+
+<br>
+<% if (typeof validationErrors !== 'undefined') { %>
+  <ul>
+    <% for (key in validationErrors) { %>
+      <li> <%= validationErrors[key].message %> </li>
+      <% } %>
+    </ul>
+    <% } %>
+    <br>
+<div class ="reviewForms">
+  <form method ="post" action="/products/<%= product._id %>/reviews">
+    <label for ="content-input"> Content </label>
+    <textarea id="content-input" name="reviewContent" rows="8" cols="80"></textarea>
+    <br>
+
+    <label for="stars-input"> Star Rating </label>
+    <input id="stars-input" type="number" name="reviewStars">
+    <br>
+
+    <label for="author-input"> Your Name </label>
+    <input id="author-input" type="text" name="reviewAuthor">
+    <br>
+    <button> Submit Review </button>
+  </form>
+
+</div>
+</div>

@@ -30,16 +30,21 @@ app.use(layouts);
 
 
 //ROUTES GO HERE
-const index = require('./routes/index');
-app.use('/', index);
+const myIndexRoutes = require('./routes/index');
+app.use('/', myIndexRoutes);
 // ----------------------------------------
 
-
+// 
 //product routes
-const productRoutes = require('./routes/product-routes.js');
-app.use('/', productRoutes);
+const myProductRoutes = require('./routes/product-routes.js');
+app.use('/', myProductRoutes);
 //------------------------------------------
 
+
+// review routes
+const myReviewRoutes = require('./routes/review-routes.js');
+app.use('/', myReviewRoutes);
+//-----------------------------
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

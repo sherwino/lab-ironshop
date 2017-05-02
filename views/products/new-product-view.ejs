@@ -1,5 +1,12 @@
 <h2> Add a Product </h2>
 
+<% if (typeof errors !== 'undefined') { %>
+  <ul>
+    <% for (key in errors) { %>
+    <li> <%= errors[key].message %> </li>
+  <% } %>
+</ul>
+<% } %>
 <form method="post" action="/products/new">
   <label for="product-name-input"> Product Name </label>
   <input id="product-name-input" type="text" name="productName">

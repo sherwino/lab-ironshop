@@ -21,23 +21,63 @@ productRoutes.get('/products/new', (req, res, next) => {
   res.render('products/new-product-view.ejs');
 });
 
+
+productRoutes.get('/products/expensive', (req, res, next) => {
+  Product
+  .find()
+  //sorts items in reverse order aka "descending"
+  .sort( { price: -1 })
+  .limit(10)
+  //this runs all of the .methods that I have assigned on the query above
+  // aka a method chain
+  .exec((err, productList) => {
+    if (err) {
+      next(err);
+      return;
+    }
+    res.render('products/expensive-view.ejs', {
+      products: productList
+    });
+  });
+});
 productRoutes.post('/products/new', (req, res, next) => {
   const theProduct = new Product({
     //this value comes from the input form that is being posted...to the body
-    name: req.body.productName,
-    price: req.body.productPrice,
-    imageUrl: req.body.productImageUrl,
-    description: req.body.productDescription
+    name:         req.body.productName,
+    price:        req.body.productPrice,
+    imageUrl:     req.body.productImageUrl,
+    description:  req.body.productDescription
   });
   theProduct.save((err) => {
     if (err) {
-      next(err);
+      res.render('products/new-product-view.ejs', {
+        errors: theProduct.errors
+      });
       return;
     }
               //localhost:3000/products
     res.redirect('/products');
   });
 });
+
+// productRoutes.get('/products/economical', (req, res, next) => {
+//   Product
+//   .find()
+//   //sorts items in reverse order aka "descending"
+//   // .sort( { price: 1 })
+//   .limit(10)
+//   //this runs all of the .methods that I have assigned on the query above
+//   // aka a method chain
+//   .exec((err, productList) => {
+//     if (err) {
+//       next(err);
+//       return;
+//     }
+//     res.render('products/economical-view.ejs', {
+//       products: productList
+//     });
+//   });
+// });
 
 //product-details?id=17878787
 //going to use a variable in the url instead
@@ -79,14 +119,19 @@ productRoutes.get('/products/:id/edit', (req, res, next) => {
       return;
     }
   res.render('products/edit-product-view.ejs', {
-    product: theProduct
+    product: theProduct,
+    errors: theProduct.errors
   });
 });
 });
+// params gets info from a URL
+// so does query but query requires the url to be in a keyValue pair ?name=bob would be in the URL
+// body gets stuff from inputs
+//
 //                      remeber :id is just a placeholder
 //                      it could be whatever you want
 productRoutes.post('/products/:id/', (req, res, next) => {
-  const productID = req.params.id;
+  const productId = req.params.id;
 
   const productChanges = {
     name:         req.body.productName,
@@ -96,7 +141,7 @@ productRoutes.post('/products/:id/', (req, res, next) => {
   };
 //this new method has three arguments
   Product.findByIdAndUpdate(
-    productID,                  //which document to change
+    productId,                  //which document to change
     productChanges,             //variable of the changes you want to make
     (err, theProduct) => {      //the callback
       if (err) {
@@ -110,6 +155,44 @@ productRoutes.post('/products/:id/', (req, res, next) => {
     }
   );
 });
+//                            :id could be whatever I want
+productRoutes.post('/products/:id/delete', (req, res, next) => {
+//                   calling  :id
+  const productId = req.params.id;
 
+// this does db.products.deleteOne({ _id: productId  })
+  Product.findByIdAndRemove(productId, (err, theProduct) => {
+    if (err) {
+      next(err);
+      return;
+    }
+
+    res.redirect('/products');
+  });
+});
+
+productRoutes.get('/search', (req, res, next) => {
+  const searchTerm = req.query.productSearchTerm;
+  if (!searchTerm) {
+    res.render('products/search-view.ejs');
+    return;
+  }
+
+// "nintendo" turns in the reg expression nintendo so anything that matches would be foudn
+  const searchRegex = new RegExp(searchTerm, 'i');
+
+  Product.find(
+    { name: searchRegex },
+    (err, searchResults) => {
+      if (err) {
+        next(err);
+        return;
+      }
+        res.render('products/search-view.ejs', {
+          products: searchResults
+        });
+      }
+  );
+});
 
 module.exports = productRoutes;

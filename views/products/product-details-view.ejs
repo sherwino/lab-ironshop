@@ -13,4 +13,37 @@
     </div>
   </div>
 
+<!-- ALL THE REVIEWS ARE THEN LISTED BELOW -->
+<!-- content: { type: String },
+stars: { type: Number, default: 0 },
+author: { type: String }, -->
+<hr>
+<h2> Product Reviews </h2>
+<ul class="reviewList">
+  <% product.reviews.forEach((oneProduct) => { %>
+    <li class ="singleReview">
+      <p>User: <%= oneProduct.author %></p>
+      <br>
+      <% for (idx = 0; idx < oneProduct.stars; idx++) { %>
+        <span>&#9733;</span>
+        <% } %>
+        (<%= oneProduct.stars %>.0)
+      <br>
+      <p class="reviewContent"><%= oneProduct.content %></p>
+      <br>
+    </li>
+    <% }) %>
+  </ul>
+  <hr>
+    <div class ="btn">
+      <a href ="/products/<%= product._id %>/reviews/new">Review This Product </a>
+      <br>
+      <a href ="/products/<%= product._id %>/edit">Edit</a>
+      <br>
+      <form method="post" action="/products/<%= product._id %>/delete">
+      <button> Delete </button>
+    </div>
+  </form>
+
+
 </section>
